@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+body {
+  overflow-x: hidden;
+}
+
 @custom-variant dark (&:is(.dark *));
 /* Custom styles for dots */
 .slick-dots li button:before {

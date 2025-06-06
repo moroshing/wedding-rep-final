@@ -14,7 +14,7 @@ export default function ColorPalette() {
   };
 
   return (
-    <div className="flex justify-center gap-4 md:gap-8 py-6">
+    <div className="flex flex-wrap justify-center gap-4 md:gap-8 py-6">
       {palette.map((color, idx) => (
         <div key={color} className="relative flex flex-col items-center">
           <motion.div

@@ -114,7 +114,7 @@ function App() {
         <LoadingScreen bgImage={bgImage} />
       ) : (
         <div
-          className="relative bg-cover bg-center h-screen text-white"
+          className="relative bg-cover bg-center h-screen text-white overflow-x-hidden"
           style={{
             backgroundImage: `url(${bgImage})`,
             fontFamily: '"EB Garamond", serif',
