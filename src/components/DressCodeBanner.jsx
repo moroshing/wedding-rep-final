@@ -1,0 +1,33 @@
+import React from "react";
+import { motion } from "framer-motion";
+import dressCodeImg from "../assets/dresscode.png";
+
+export default function DressCodeBanner() {
+  return (
+    <div className="relative w-full max-w-3xl mx-auto aspect-[16/7]">
+      <img
+        src={dressCodeImg}
+        alt="Dress Code"
+        className="w-full h-full object-contain rounded-lg"
+        draggable={false}
+        loading="lazy"
+      />
+      <motion.span
+        className="absolute left-4 md:left-12 top-8 md:top-16 text-white font-bold text-xl md:text-3xl drop-shadow-lg"
+        initial={{ opacity: 0, x: -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, type: "spring" }}
+      >
+        BE PRESENTABLE
+      </motion.span>
+      <motion.span
+        className="absolute right-4 md:right-12 bottom-8 md:bottom-16 text-white font-bold text-xl md:text-3xl drop-shadow-lg"
+        initial={{ opacity: 0, x: 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.4, type: "spring" }}
+      >
+        FOLLOW DRESS CODE
+      </motion.span>
+    </div>
+  );
+}
