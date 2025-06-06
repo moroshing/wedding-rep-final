@@ -109,19 +109,19 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {loading ? (
         <LoadingScreen bgImage={bgImage} />
       ) : (
         <div
-          className="relative bg-cover bg-center h-screen text-white overflow-x-hidden"
+          className="w-full relative bg-cover bg-center h-screen text-white"
           style={{
             backgroundImage: `url(${bgImage})`,
             fontFamily: '"EB Garamond", serif',
           }}
         >
           <div
-            className="absolute inset-0 bg-black opacity-40 z-0  h-screen"
+            className="absolute inset-0 bg-black opacity-40 z-0"
             aria-hidden="true"
           />
           <main className="relative z-10 overflow-y-auto h-screen">
@@ -237,10 +237,7 @@ function App() {
               </div>
             </section>
 
-            <section
-              className="bg-black/40 text-center py-10"
-              ref={timelineRef}
-            >
+            <section className="bg-black/40 text-center py-10">
               <SectionTitle>Gallery</SectionTitle>
               <BlurFadeDemo />
             </section>
@@ -264,6 +261,7 @@ function App() {
                 height="1150"
                 style={{ background: "#dedcd4", borderRadius: "0.5rem" }}
                 title="RSVP Form"
+                className="p-5"
               >
                 Loading…
               </iframe>
