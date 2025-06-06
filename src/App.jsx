@@ -121,7 +121,7 @@ function App() {
           }}
         >
           <div
-            className="absolute inset-0 bg-black opacity-40 z-0"
+            className="absolute inset-0 bg-black opacity-40 z-0  h-screen"
             aria-hidden="true"
           />
           <main className="relative z-10 overflow-y-auto h-screen">

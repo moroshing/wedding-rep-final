@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const palette = ["#dde8dd", "#c3d6c3", "#9bb89b", "#7e9e7e", "#3b5e4b"];
+const palette = ["#dde8dd", "#c3d6c3", "#9bb89b", "#3b5e4b", "#00674F"];
 
 export default function ColorPalette() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
