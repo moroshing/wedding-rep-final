@@ -1,10 +1,13 @@
 import "./App.css";
+import "./index.css";
 import { useRef, useState, useEffect } from "react";
 import bgImage from "./assets/bg.jpg";
 import image1 from "./assets/image1.jpg";
 import image2 from "./assets/image2.jpg";
 import image3 from "./assets/image3.jpg";
 import image4 from "./assets/church1.jpg";
+import image7 from "./assets/w.png";
+import image5 from "./assets/m.png";
 
 import VenueCard from "./components/Card";
 import Timeline from "./components/Timeline";
@@ -15,7 +18,10 @@ import TimerGrid from "./components/Timer";
 import WeddingCalendar from "./components/Calendar";
 import SectionTitle from "./components/Header";
 import TypewriterText from "./components/Typewriter";
-//import RSVPForm from "./components/Rsvp";
+import Entourage from "./components/Entourage";
+import ColorPalette from "./components/ColorPalette";
+import DressCodeBanner from "./components/DressCodeBanner";
+import BlurFadeDemo from "./components/Gallery";
 
 function App() {
   const carouselImages = [image1, image2, image3];
@@ -113,8 +119,6 @@ function App() {
             backgroundImage: `url(${bgImage})`,
             fontFamily: '"EB Garamond", serif',
           }}
-          role="img"
-          aria-label="Wedding invitation background"
         >
           <div
             className="absolute inset-0 bg-black opacity-40 z-0"
@@ -150,7 +154,10 @@ function App() {
 
               {/* Scroll Indicator */}
               <div className="mt-20 animate-bounce">
-                <p className="text-sm text-gray-300">
+                <p
+                  className="text-sm text-gray-300 cursor-pointer hover:underline"
+                  onClick={() => scrollToSection(carouselRef)}
+                >
                   Scroll to discover our story
                 </p>
                 <svg
@@ -193,36 +200,77 @@ function App() {
               className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
             >
               <SectionTitle>Our Wedding Day</SectionTitle>
+
               <div className="flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-6">
                 <WeddingCalendar />
                 <VenueCard
                   imageSrc={image4}
-                  churchName="Archdiocesan Shrine and Parish of the Immaculate Heart of Mary"
-                  massTime="1:00 PM"
-                  reception="Pardo Social Hall"
+                  name="Archdiocesan Shrine and Parish of the Immaculate Heart of Mary"
+                  time="1:00 PM"
                 />
               </div>
             </section>
             <section
               ref={venueRef}
+              className="flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 max-w-screen-md mx-auto scroll-mt-5"
+            >
+              <SectionTitle>Dress Code</SectionTitle>
+              <ColorPalette />
+              <DressCodeBanner />
+              <div className="mt-6 space-y-2">
+                <p className="text-lg">
+                  Please wear formal attire and follow the color palette above.
+                </p>
+                <ul className="text-base text-gray-200 list-disc list-inside">
+                  <li>
+                    Men: Barong or long sleeves, formal pants, and dress shoes.
+                  </li>
+                  <li>
+                    Women: Long dress or formal attire in earth tones or pastel
+                    colors.
+                  </li>
+                  <li>
+                    Please avoid wearing white or the same color as the
+                    entourage.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section
+              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+              ref={timelineRef}
+            >
+              <SectionTitle>Gallery</SectionTitle>
+              <BlurFadeDemo>
+                <img src={image1} alt="Sample 1" />
+                <img src={image2} alt="Sample 2" />
+                <img src={image3} alt="Sample 3" />
+              </BlurFadeDemo>
+            </section>
+
+            <section
+              ref={venueRef}
+              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+            >
+              <SectionTitle>Entourage</SectionTitle>
+              <Entourage />
+            </section>
+
+            <section
+              ref={venueRef}
               className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
             >
               <SectionTitle>Respond, if you please</SectionTitle>
-              <div className="w-full flex justify-center">
-                <div className="p-3 rounded-lg shadow-lg overflow-hidden max-w-2xl w-full bg-black/30">
-                  <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSdC7SwMkrj93TBR8zFCofY1G7tf3v2n__hl06H8walBkEzUbg/viewform?embedded=true"
-                    width="100%"
-                    height="500"
-                    title="RSVP"
-                    allowFullScreen
-                    className="w-full"
-                    style={{ border: "none" }}
-                  >
-                    Loading…
-                  </iframe>
-                </div>
-              </div>
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdC7SwMkrj93TBR8zFCofY1G7tf3v2n__hl06H8walBkEzUbg/viewform?embedded=true"
+                width="100%"
+                height="1150"
+                style={{ background: "#dedcd4", borderRadius: "0.5rem" }}
+                title="RSVP Form"
+              >
+                Loading…
+              </iframe>
             </section>
 
             {/* Note */}
@@ -232,6 +280,17 @@ function App() {
                 picture taking.
               </p>
             </section>
+            <footer className="w-full py-2 bg-black text-white font-serif">
+              <div className="max-w-screen-md mx-auto px-4 flex flex-col items-center text-center gap-1">
+                <p className="text-sm">
+                  © {new Date().getFullYear()} Jenny & Gerone's Wedding. All
+                  rights reserved.
+                </p>
+                <p className="text-xs text-gray-400">
+                  Created by Kyle David Caumeran
+                </p>
+              </div>
+            </footer>
           </main>
         </div>
       )}
