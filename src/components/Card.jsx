@@ -1,50 +1,82 @@
-import React from "react";
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
-import { Card, Image } from "antd";
-import { ClockCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
 
-const { Meta } = Card;
-
-const VenueCard = ({ imageSrc, churchName, massTime, reception }) => {
+export default function VenueCard({ imageSrc, name, time }) {
   return (
     <motion.div
-      className="rounded-md w-full md:w-1/2 flex flex-col h-[400px] overflow-hidden"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, delay: 0.1 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
+      className="rounded-md w-full md:w-1/2 flex flex-col h-[400px] overflow-hidden gap-8"
     >
       <Card
-        className="h-full"
-        cover={
-          <Image
-            src={imageSrc}
-            alt={churchName}
-            className="object-cover h-48 w-full"
-          />
-        }
+        sx={{
+          background: "#dedcd4",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
-        <Meta
-          title={
-            <div className="flex items-center">
-              <EnvironmentOutlined className="mr-2" />
-              {churchName}
-            </div>
-          }
-          description={
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <ClockCircleOutlined className="mr-2" />
-                {massTime}
-              </div>
-              <p className="mt-2">{reception}</p>
-            </div>
-          }
-        />
+        <CardMedia sx={{ height: 200 }} image={imageSrc} title={name} />
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography
+            sx={{ fontFamily: '"EB Garamond", serif', fontWeight: "bold" }}
+            gutterBottom
+            variant="h6"
+            component="div"
+          >
+            {name}
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: "text.secondary", fontFamily: '"EB Garamond", serif' }}
+          >
+            Time: {time}
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              color: "text.secondary",
+              fontFamily: '"EB Garamond", serif',
+              mt: 1,
+            }}
+          >
+            We look forward to celebrating with you!
+          </Typography>
+        </CardContent>
+        <CardActions
+          sx={{
+            justifyContent: "center",
+            background: "#dedcd4",
+            pb: 3, // Add more padding to the bottom
+            pt: 1,
+          }}
+        >
+          <Button
+            size="small"
+            component="a"
+            href="https://maps.app.goo.gl/CMDTbcqyh2DezavU9"
+            target="_blank"
+            sx={{
+              padding: "4px 16px",
+              backgroundColor: "#5c522a",
+              color: "#fff",
+              "&:hover": { backgroundColor: "#6d4320" },
+              fontFamily: '"EB Garamond", serif',
+            }}
+          >
+            Get Directions
+          </Button>
+        </CardActions>
       </Card>
     </motion.div>
   );
-};
-
-export default VenueCard;
+}
