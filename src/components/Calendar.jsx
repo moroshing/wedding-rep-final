@@ -3,8 +3,8 @@ import { motion } from "motion/react";
 
 const WeddingCalendar = () => (
   <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    animate={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, y: 40, scale: 1 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
     transition={{ duration: 0.2, delay: 0.1 }}
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.97 }}
