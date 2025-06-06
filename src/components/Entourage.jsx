@@ -51,18 +51,28 @@ const entourageData = [
 export default function Entourage() {
   return (
     <div className="relative w-full p-6 rounded-lg overflow-hidden">
+      {/* Black overlay with low opacity */}
       <div className="absolute inset-0 bg-black opacity-30 rounded-lg pointer-events-none"></div>
-      <div className="relative space-y-8 flex flex-col items-center">
-        {entourageData.map((group) => (
-          <div key={group.group} className="w-full max-w-xl">
-            <h3 className="text-lg md:text-xl text-white font-serif tracking-wide mb-2 text-center">
+      {/* Section Title */}
+      <div className="relative space-y-10 flex flex-col items-center z-10">
+        {entourageData.map((group, idx) => (
+          <motion.div
+            key={group.group}
+            className="w-full max-w-xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+          >
+            <h3 className="flex items-center justify-center gap-2 text-lg md:text-xl text-[#dedcd4] font-serif tracking-wide mb-2 text-center">
+              <span className="text-2xl md:text-3xl">{group.emoji}</span>
               {group.group}
             </h3>
             <div className="flex flex-wrap gap-3 justify-center">
               {group.members.map((member) => (
                 <motion.span
                   key={member.name}
-                  className="bg-[#dedcd4] md:text-base text-[#5c522a] px-4 py-2 rounded-full font-serif text-sm shadow cursor-pointer"
+                  className="bg-white/90 md:text-base text-[#5c522a] px-4 py-2 rounded-full font-serif text-sm shadow cursor-pointer transition-all"
                   whileHover={{
                     scale: 1.08,
                     backgroundColor: "#e9e6d8",
@@ -74,7 +84,11 @@ export default function Entourage() {
                 </motion.span>
               ))}
             </div>
-          </div>
+            {/* Decorative divider */}
+            {idx !== entourageData.length - 1 && (
+              <div className="my-6 border-t border-[#dedcd4]/40 w-2/3 mx-auto" />
+            )}
+          </motion.div>
         ))}
       </div>
     </div>

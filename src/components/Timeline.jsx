@@ -47,7 +47,7 @@ const Timeline = ({ events }) => {
 
   return (
     <>
-      <div className="flex px-3 justify-center">
+      <div className="flex justify-center px-8 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5">
         <AntTimeline
           mode="left"
           className="custom-timeline"

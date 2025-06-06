@@ -13,7 +13,7 @@ const images = [image3, image4, image6, image5, image1, image7, image8, image2];
 
 export default function Gallery() {
   return (
-    <section id="photos">
+    <section className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5">
       <div className="columns-2 gap-4 sm:columns-3">
         {images.map((imageUrl, idx) => {
           const isLandscape = idx % 2 === 0;

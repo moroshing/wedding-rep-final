@@ -187,7 +187,7 @@ function App() {
 
             {/* Timeline Section */}
             <section
-              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+              className="bg-black/40 text-center py-10"
               ref={timelineRef}
             >
               <SectionTitle>Our Journey</SectionTitle>
@@ -238,22 +238,18 @@ function App() {
             </section>
 
             <section
-              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+              className="bg-black/40 text-center py-10"
               ref={timelineRef}
             >
               <SectionTitle>Gallery</SectionTitle>
-              <BlurFadeDemo>
-                <img src={image1} alt="Sample 1" />
-                <img src={image2} alt="Sample 2" />
-                <img src={image3} alt="Sample 3" />
-              </BlurFadeDemo>
+              <BlurFadeDemo />
             </section>
 
             <section
               ref={venueRef}
               className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
             >
-              <SectionTitle>Entourage</SectionTitle>
+              <SectionTitle>Meet the Entourage</SectionTitle>
               <Entourage />
             </section>
 
