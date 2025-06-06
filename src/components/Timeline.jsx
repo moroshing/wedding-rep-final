@@ -1,5 +1,6 @@
 import React from "react";
 import { Timeline as AntTimeline } from "antd";
+import { motion } from "motion/react";
 
 const Timeline = ({ events }) => {
   // Prepare the items array for Ant Design Timeline
@@ -9,10 +10,14 @@ const Timeline = ({ events }) => {
         {event.date}
         <br />
         {event.image && (
-          <img
+          <motion.img
             src={event.image}
+            loading="lazy"
             alt=""
             className="mt-2 w-full h-32 object-cover rounded"
+            initial={{ scale: 0.9, opacity: 0.7 }}
+            whileInView={{ scale: 1.05, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring" }}
           />
         )}
       </span>
@@ -32,7 +37,7 @@ const Timeline = ({ events }) => {
     children: (
       <div className="w-full text-right">
         <h3 className="text-lg font-semibold  text-white">{event.title}</h3>
-        <p className="mt-2 text-right text-xs md:text-sm lg:text-base text-white">
+        <p className="mt-2 text-justify text-xs md:text-sm lg:text-base text-white">
           {event.description}
         </p>
       </div>
