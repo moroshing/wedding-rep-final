@@ -6,8 +6,6 @@ import image1 from "./assets/image1.jpg";
 import image2 from "./assets/image2.jpg";
 import image3 from "./assets/image3.jpg";
 import image4 from "./assets/church1.jpg";
-import image7 from "./assets/w.png";
-import image5 from "./assets/m.png";
 //import musicFile from "./assets/music.mp3";
 import musicFile from "./assets/music1.mp3";
 
@@ -29,6 +27,7 @@ function App() {
   const audioRef = useRef(null);
   const [showModal, setShowModal] = useState(true);
   const [isFading, setIsFading] = useState(false);
+  const [modalImageLoaded, setModalImageLoaded] = useState(false);
 
   const handleStart = () => {
     setIsFading(true);
@@ -38,8 +37,14 @@ function App() {
       if (audioRef.current) {
         audioRef.current.play();
       }
-    }, 300); // 400ms matches the transition duration
+    }, 300);
   };
+
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = image1;
+    img.onload = () => setModalImageLoaded(true);
+  }, []);
 
   const carouselImages = [image1, image2, image3];
   const carouselRef = useRef(null);
@@ -138,42 +143,53 @@ function App() {
           }}
         >
           {/* Modal overlay */}
-          {!loading && showModal && (
+          {!loading && showModal && modalImageLoaded && (
             <div
               className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-400 ${
                 isFading ? "opacity-0" : "opacity-100"
               }`}
             >
-              {/* Blurred background */}
               <div className="absolute inset-0 backdrop-blur-md bg-black/30"></div>
-              <div className="relative bg-white rounded-2xl shadow-2xl p-4 md:p-12 text-center w-full max-w-xs sm:max-w-md md:max-w-2xl flex flex-col items-center mx-4">
+              <div className="relative bg-white rounded-2xl shadow-2xl p-4 md:p-12 text-center w-full max-w-xs sm:max-w-md md:max-w-2xl flex flex-col items-center mx-4 min-h-[350px]">
+                {!modalImageLoaded && (
+                  <div className="flex justify-center items-center h-40 w-40 mb-6">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#5c522a]" />
+                  </div>
+                )}
                 <img
                   src={image1}
                   alt="Jenny & Gerone"
-                  className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 object-cover rounded-full mx-auto mb-6 shadow-lg border-4 border-[#dedcd4]"
+                  className={`w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 object-cover rounded-full mx-auto mb-6 shadow-lg border-4 border-[#dedcd4] ${
+                    modalImageLoaded ? "" : "hidden"
+                  }`}
                   draggable={false}
+                  onLoad={() => setModalImageLoaded(true)}
                 />
-                <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-2 text-[#5c522a]">
-                  We are getting married
-                </h2>
-                <h3
-                  className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4"
-                  style={{
-                    fontFamily: '"Parisienne", cursive',
-                    color: "#5c522a",
-                  }}
-                >
-                  Jenny & Gerone
-                </h3>
-                <p className="mb-6 text-gray-700 text-base sm:text-lg">
-                  Click below to get started and enjoy the music.
-                </p>
-                <button
-                  onClick={handleStart}
-                  className="px-8 py-3 bg-[#5c522a] text-white rounded-lg font-semibold hover:bg-[#6d4320] transition text-lg"
-                >
-                  Get Started
-                </button>
+                {modalImageLoaded && (
+                  <>
+                    <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-2 text-[#5c522a]">
+                      We are getting married
+                    </h2>
+                    <h3
+                      className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4"
+                      style={{
+                        fontFamily: '"Parisienne", cursive',
+                        color: "#5c522a",
+                      }}
+                    >
+                      Jenny & Gerone
+                    </h3>
+                    <p className="mb-6 text-gray-700 text-base sm:text-lg">
+                      Click below to get started and enjoy the music.
+                    </p>
+                    <button
+                      onClick={handleStart}
+                      className="px-8 py-3 bg-[#5c522a] text-white rounded-lg font-semibold hover:bg-[#6d4320] transition text-lg"
+                    >
+                      Get Started
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           )}
