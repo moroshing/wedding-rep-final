@@ -30,7 +30,7 @@ export default function ColorPalette() {
             onClick={() => handleCopy(color, idx)}
             title="Click to copy"
           >
-            {hoveredIdx === idx && (
+            {(hoveredIdx === idx || copiedIdx === idx) && (
               <motion.span
                 className="text-[#5c522a] font-mono text-xs md:text-base bg-white/80 px-2 py-1 rounded-lg select-none"
                 initial={{ opacity: 0, y: 10 }}

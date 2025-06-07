@@ -19,7 +19,7 @@ const TopNav = ({
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 bg-black bg-opacity-70 z-50 text-white py-2"
+      className="fixed top-0 left-0 w-full bg-black bg-opacity-70 z-50 text-white py-2"
     >
       <motion.div
         className="flex justify-center space-x-2 sm:space-x-6"
