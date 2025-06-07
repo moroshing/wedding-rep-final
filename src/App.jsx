@@ -8,7 +8,8 @@ import image3 from "./assets/image3.jpg";
 import image4 from "./assets/church1.jpg";
 import image7 from "./assets/w.png";
 import image5 from "./assets/m.png";
-import musicFile from "./assets/music.mp3"; // <-- Add this import at the top
+//import musicFile from "./assets/music.mp3";
+import musicFile from "./assets/music1.mp3";
 
 import VenueCard from "./components/Card";
 import Timeline from "./components/Timeline";
@@ -137,7 +138,7 @@ function App() {
           }}
         >
           {/* Modal overlay */}
-          {showModal && (
+          {!loading && showModal && (
             <div
               className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-400 ${
                 isFading ? "opacity-0" : "opacity-100"
