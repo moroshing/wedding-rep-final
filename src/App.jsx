@@ -8,6 +8,7 @@ import image3 from "./assets/image3.jpg";
 import image4 from "./assets/church1.jpg";
 import image7 from "./assets/w.png";
 import image5 from "./assets/m.png";
+import musicFile from "./assets/music.mp3"; // <-- Add this import at the top
 
 import VenueCard from "./components/Card";
 import Timeline from "./components/Timeline";
@@ -24,6 +25,21 @@ import DressCodeBanner from "./components/DressCodeBanner";
 import BlurFadeDemo from "./components/Gallery";
 
 function App() {
+  const audioRef = useRef(null);
+  const [showModal, setShowModal] = useState(true);
+  const [isFading, setIsFading] = useState(false);
+
+  const handleStart = () => {
+    setIsFading(true);
+    setTimeout(() => {
+      setShowModal(false);
+      setIsFading(false);
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    }, 300); // 400ms matches the transition duration
+  };
+
   const carouselImages = [image1, image2, image3];
   const carouselRef = useRef(null);
   const timelineRef = useRef(null);
@@ -120,171 +136,224 @@ function App() {
             fontFamily: '"EB Garamond", serif',
           }}
         >
+          {/* Modal overlay */}
+          {showModal && (
+            <div
+              className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-400 ${
+                isFading ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              {/* Blurred background */}
+              <div className="absolute inset-0 backdrop-blur-md bg-black/30"></div>
+              <div className="relative bg-white rounded-2xl shadow-2xl p-4 md:p-12 text-center w-full max-w-xs sm:max-w-md md:max-w-2xl flex flex-col items-center mx-4">
+                <img
+                  src={image1}
+                  alt="Jenny & Gerone"
+                  className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 object-cover rounded-full mx-auto mb-6 shadow-lg border-4 border-[#dedcd4]"
+                  draggable={false}
+                />
+                <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-2 text-[#5c522a]">
+                  We are getting married
+                </h2>
+                <h3
+                  className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4"
+                  style={{
+                    fontFamily: '"Parisienne", cursive',
+                    color: "#5c522a",
+                  }}
+                >
+                  Jenny & Gerone
+                </h3>
+                <p className="mb-6 text-gray-700 text-base sm:text-lg">
+                  Click below to get started and enjoy the music.
+                </p>
+                <button
+                  onClick={handleStart}
+                  className="px-8 py-3 bg-[#5c522a] text-white rounded-lg font-semibold hover:bg-[#6d4320] transition text-lg"
+                >
+                  Get Started
+                </button>
+              </div>
+            </div>
+          )}
+          {/* Audio player */}
+          <audio
+            ref={audioRef}
+            src={musicFile}
+            loop
+            style={{ display: showModal ? "none" : "block" }}
+          />
           <div
             className="absolute inset-0 bg-black opacity-40 z-0"
             aria-hidden="true"
           />
           <main className="relative z-10 overflow-y-auto h-screen">
-            <TopNav
-              scrollToSection={scrollToSection}
-              carouselRef={carouselRef}
-              timelineRef={timelineRef}
-              calendarRef={calendarRef}
-              venueRef={venueRef}
-            />
-            {/* Timer Section */}
-            <section
-              className="h-screen flex flex-col items-center justify-center text-center px-5"
-              style={{ height: `calc(100vh - 50px)` }}
-            >
-              <h1
-                className="text-4xl sm:text-6xl font-bold"
-                style={{ fontFamily: '"Parisienne", cursive' }}
-              >
-                Jenny & Gerone
-              </h1>
-              <TypewriterText text="You're invited to our wedding!" />
-
-              <TimerGrid
-                timerDays={timerDays}
-                timerHours={timerHours}
-                timerMinutes={timerMinutes}
-                timerSeconds={timerSeconds}
-              />
-
-              {/* Scroll Indicator */}
-              <div className="mt-20 animate-bounce">
-                <p
-                  className="text-sm text-gray-300 cursor-pointer hover:underline"
-                  onClick={() => scrollToSection(carouselRef)}
-                >
-                  Scroll to discover our story
-                </p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 mx-auto text-gray-300"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
-            </section>
-            {/* Carousel Section */}
-            <section
-              ref={carouselRef}
-              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5 mb-15"
-            >
-              <SectionTitle>Our Memories</SectionTitle>
-              <Carousel images={carouselImages} />
-            </section>
-
-            {/* Timeline Section */}
-            <section
-              className="bg-black/40 text-center py-10"
-              ref={timelineRef}
-            >
-              <SectionTitle>Our Journey</SectionTitle>
-              <Timeline events={timelineEvents} />
-            </section>
-
-            {/* Wedding Day Section */}
-            <section
-              ref={calendarRef}
-              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
-            >
-              <SectionTitle>Our Wedding Day</SectionTitle>
-
-              <div className="flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-6">
-                <WeddingCalendar />
-                <VenueCard
-                  imageSrc={image4}
-                  name="Archdiocesan Shrine and Parish of the Immaculate Heart of Mary"
-                  time="1:00 PM"
+            {!showModal && (
+              <>
+                <TopNav
+                  scrollToSection={scrollToSection}
+                  carouselRef={carouselRef}
+                  timelineRef={timelineRef}
+                  calendarRef={calendarRef}
+                  venueRef={venueRef}
                 />
-              </div>
-            </section>
-            <section
-              ref={venueRef}
-              className="flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 max-w-screen-md mx-auto scroll-mt-5"
-            >
-              <SectionTitle>Dress Code</SectionTitle>
-              <ColorPalette />
-              <DressCodeBanner />
-              <div className="mt-6 space-y-2">
-                <p className="text-lg">
-                  Please wear formal attire and follow the color palette above.
-                </p>
-                <ul className="text-base text-gray-200 list-disc list-inside">
-                  <li>
-                    Men: Barong or long sleeves, formal pants, and dress shoes.
-                  </li>
-                  <li>
-                    Women: Long dress or formal attire in earth tones or pastel
-                    colors.
-                  </li>
-                  <li>
-                    Please avoid wearing white or the same color as the
-                    entourage.
-                  </li>
-                </ul>
-              </div>
-            </section>
+                {/* Timer Section */}
+                <section
+                  className="h-screen flex flex-col items-center justify-center text-center px-5"
+                  style={{ height: `calc(100vh - 50px)` }}
+                >
+                  <h1
+                    className="text-4xl sm:text-6xl font-bold"
+                    style={{ fontFamily: '"Parisienne", cursive' }}
+                  >
+                    Jenny & Gerone
+                  </h1>
+                  <TypewriterText text="You're invited to our wedding!" />
 
-            <section className="bg-black/40 text-center py-10">
-              <SectionTitle>Gallery</SectionTitle>
-              <BlurFadeDemo />
-            </section>
+                  <TimerGrid
+                    timerDays={timerDays}
+                    timerHours={timerHours}
+                    timerMinutes={timerMinutes}
+                    timerSeconds={timerSeconds}
+                  />
 
-            <section
-              ref={venueRef}
-              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
-            >
-              <SectionTitle>Meet the Entourage</SectionTitle>
-              <Entourage />
-            </section>
+                  {/* Scroll Indicator */}
+                  <div className="mt-20 animate-bounce">
+                    <p
+                      className="text-sm text-gray-300 cursor-pointer hover:underline"
+                      onClick={() => scrollToSection(carouselRef)}
+                    >
+                      Scroll to discover our story
+                    </p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 mx-auto text-gray-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </section>
+                {/* Carousel Section */}
+                <section
+                  ref={carouselRef}
+                  className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5 mb-15"
+                >
+                  <SectionTitle>Our Memories</SectionTitle>
+                  <Carousel images={carouselImages} />
+                </section>
 
-            <section
-              ref={venueRef}
-              className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
-            >
-              <SectionTitle>Respond, if you please</SectionTitle>
-              <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdC7SwMkrj93TBR8zFCofY1G7tf3v2n__hl06H8walBkEzUbg/viewform?embedded=true"
-                width="100%"
-                height="1150"
-                style={{ background: "#dedcd4", borderRadius: "0.5rem" }}
-                title="RSVP Form"
-                className="p-5"
-              >
-                Loading…
-              </iframe>
-            </section>
+                {/* Timeline Section */}
+                <section
+                  className="bg-black/40 text-center py-10"
+                  ref={timelineRef}
+                >
+                  <SectionTitle>Our Journey</SectionTitle>
+                  <Timeline events={timelineEvents} />
+                </section>
 
-            {/* Note */}
-            <section className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto">
-              <p>
-                Please note: Not wearing the dress code is not allowed in the
-                picture taking.
-              </p>
-            </section>
-            <footer className="w-full py-2 bg-black text-white font-serif">
-              <div className="max-w-screen-md mx-auto px-4 flex flex-col items-center text-center gap-1">
-                <p className="text-sm">
-                  © {new Date().getFullYear()} Jenny & Gerone's Wedding. All
-                  rights reserved.
-                </p>
-                <p className="text-xs text-gray-400">
-                  Created by Kyle David Caumeran
-                </p>
-              </div>
-            </footer>
+                {/* Wedding Day Section */}
+                <section
+                  ref={calendarRef}
+                  className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+                >
+                  <SectionTitle>Our Wedding Day</SectionTitle>
+
+                  <div className="flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-6">
+                    <WeddingCalendar />
+                    <VenueCard
+                      imageSrc={image4}
+                      name="Archdiocesan Shrine and Parish of the Immaculate Heart of Mary"
+                      time="1:00 PM"
+                    />
+                  </div>
+                </section>
+                <section
+                  ref={venueRef}
+                  className="flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 max-w-screen-md mx-auto scroll-mt-5"
+                >
+                  <SectionTitle>Dress Code</SectionTitle>
+                  <ColorPalette />
+                  <DressCodeBanner />
+                  <div className="mt-6 space-y-2">
+                    <p className="text-lg">
+                      Please wear formal attire and follow the color palette
+                      above.
+                    </p>
+                    <ul className="text-base text-gray-200 list-disc list-inside">
+                      <li>
+                        Men: Barong or long sleeves, formal pants, and dress
+                        shoes.
+                      </li>
+                      <li>
+                        Women: Long dress or formal attire in earth tones or
+                        pastel colors.
+                      </li>
+                      <li>
+                        Please avoid wearing white or the same color as the
+                        entourage.
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section className="bg-black/40 text-center py-10">
+                  <SectionTitle>Gallery</SectionTitle>
+                  <BlurFadeDemo />
+                </section>
+
+                <section
+                  ref={venueRef}
+                  className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+                >
+                  <SectionTitle>Meet the Entourage</SectionTitle>
+                  <Entourage />
+                </section>
+
+                <section
+                  ref={venueRef}
+                  className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+                >
+                  <SectionTitle>Respond, if you please</SectionTitle>
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdC7SwMkrj93TBR8zFCofY1G7tf3v2n__hl06H8walBkEzUbg/viewform?embedded=true"
+                    width="100%"
+                    height="1150"
+                    style={{ background: "#dedcd4", borderRadius: "0.5rem" }}
+                    title="RSVP Form"
+                    className="p-5"
+                  >
+                    Loading…
+                  </iframe>
+                </section>
+
+                {/* Note */}
+                <section className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto">
+                  <p>
+                    Please note: Not wearing the dress code is not allowed in
+                    the picture taking.
+                  </p>
+                </section>
+                <footer className="w-full py-2 bg-black text-white font-serif">
+                  <div className="max-w-screen-md mx-auto px-4 flex flex-col items-center text-center gap-1">
+                    <p className="text-sm">
+                      © {new Date().getFullYear()} Jenny & Gerone's Wedding. All
+                      rights reserved.
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      Created by Kyle David Caumeran
+                    </p>
+                  </div>
+                </footer>
+              </>
+            )}
           </main>
         </div>
       )}

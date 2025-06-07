@@ -26,6 +26,21 @@ body {
   animation: spin 1s linear infinite;
 }
 
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 400ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 400ms;
+}
+
 /* Custom styles for timer grid */
 @media (max-width: 345px) {
   .timer-grid {
