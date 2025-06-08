@@ -5,13 +5,15 @@ const TopNav = ({
   carouselRef,
   timelineRef,
   calendarRef,
-  venueRef,
+  rsvpRef,
+  faqRef,
 }) => {
   const navItems = [
     { label: "OUR STORY", ref: carouselRef },
     { label: "OUR JOURNEY", ref: timelineRef },
     { label: "THE DAY", ref: calendarRef },
-    { label: "RSVP", ref: venueRef },
+    { label: "RSVP", ref: rsvpRef },
+    { label: "FAQ", ref: faqRef },
   ];
 
   return (

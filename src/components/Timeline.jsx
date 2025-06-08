@@ -6,13 +6,12 @@ const Timeline = ({ events }) => {
   // Prepare the items array for Ant Design Timeline
   const timelineItems = events.map((event) => ({
     label: (
-      <span className="text-white block text-left mt-1">
+      <span className="text-white block text-left mt-1 mr-4">
         {event.date}
         <br />
         {event.image && (
           <motion.img
             src={event.image}
-            loading="lazy"
             alt=""
             className="mt-2 w-full h-32 object-cover rounded"
             initial={{ scale: 0.9, opacity: 0.7 }}
@@ -26,8 +25,8 @@ const Timeline = ({ events }) => {
       <span
         style={{
           display: "inline-block",
-          width: 14,
-          height: 14,
+          width: "14px",
+          height: "14px",
           borderRadius: "100%",
           background: "white",
           border: "2px solid white",
@@ -56,14 +55,33 @@ const Timeline = ({ events }) => {
       </div>
       <style>
         {`
-          .custom-timeline .ant-timeline-item-tail {
-            border-color: white !important;
-          }
-          .custom-timeline {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-          }
-        `}
+        .custom-timeline .ant-timeline-item-head {
+          background: transparent !important;
+          border: none !important;
+          box-shadow: none !important;
+          width: auto !important;
+          height: auto !important;
+          min-width: 0 !important;
+          min-height: 0 !important;
+          padding: 0 !important;
+        }
+        .custom-timeline-dot {
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: white;
+          border: 2px solid white;
+          box-sizing: border-box;
+        }
+        .custom-timeline .ant-timeline-item-tail {
+          border-color: white !important;
+        }
+        .custom-timeline {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+      `}
       </style>
     </>
   );
