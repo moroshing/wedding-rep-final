@@ -24,6 +24,7 @@ export default function Gallery() {
               <img
                 className="mb-4 size-full rounded-lg object-contain"
                 src={imageUrl}
+                loading="lazy"
                 alt={`Gallery image ${idx + 1}`}
                 width={width}
                 height={height}

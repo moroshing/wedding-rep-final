@@ -347,7 +347,7 @@ function App() {
                 >
                   <div className="text-white max-w-2xl w-full px-6">
                     <h2 className="text-4xl font-bold mb-8 text-center">
-                      Frequently Asked Questions
+                      FAQs
                     </h2>
                     <div className="space-y-6">
                       <div className="bg-white/90 rounded-xl shadow-lg p-6 text-black">
