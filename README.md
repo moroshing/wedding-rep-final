@@ -1,7 +1,7 @@
 # Jenny & Gerone – Wedding Invitation
 
 A beautiful, responsive, and heartfelt digital wedding invitation built as a static website with React, JavaScript, and Tailwind CSS.
-Designed to share our joy with elegance — featuring RSVP via Google Forms for seamless guest responses
+Designed to share our joy with elegance, featuring RSVP via Google Forms for seamless guest responses
 
 ---
 
