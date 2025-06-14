@@ -1,13 +1,22 @@
 import "./App.css";
 import "./index.css";
 import { useRef, useState, useEffect } from "react";
+
 import bgImage from "./assets/bg.jpg";
-import image1 from "./assets/image1.jpg";
-import image2 from "./assets/image2.jpg";
-import image3 from "./assets/image3.jpg";
-import image4 from "./assets/church1.jpg";
+
+import cl1 from "./assets/cl1.jpg";
+import cl2 from "./assets/cl2.jpg";
+import cl3 from "./assets/cl3.jpg";
+import cl4 from "./assets/cl4.jpg";
+import cl5 from "./assets/cl5.jpg";
+import cl6 from "./assets/cl6.jpg";
+import cl7 from "./assets/cl7.jpg";
+
+import church from "./assets/church1.jpg";
+
+import first from "./assets/first.jpg";
+import engagement from "./assets/engagement.jpg";
 import musicFile from "./assets/music.mp3";
-//import musicFile from "./assets/music1.mp3";
 
 import VenueCard from "./components/Card";
 import Timeline from "./components/Timeline";
@@ -30,7 +39,7 @@ function App() {
   const [isFading, setIsFading] = useState(false);
   const [appReady, setAppReady] = useState(false);
 
-  const carouselImages = [image1, image2, image3];
+  const carouselImages = [cl1, cl2, cl6, cl3, cl7, cl4, cl5];
   const carouselRef = useRef(null);
   const timelineRef = useRef(null);
   const calendarRef = useRef(null);
@@ -66,28 +75,28 @@ function App() {
   const timelineEvents = [
     {
       title: "First Meeting",
-      image: image1,
-      date: "January 2015",
+      image: first,
+      date: "2013",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "It was great to meet him at my aunt's house - he's a friend of my cousins. We had a wonderful time at the carnival and enjoyed strolling around together.",
     },
     {
       title: "First Date",
-      image: image2,
+      image: first,
       date: "March 2015",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "It was great to meet him at my aunt's house - he's a friend of my cousins. We had a wonderful time at the carnival and enjoyed strolling around together.",
     },
     {
       title: "Engagement",
-      image: image3,
-      date: "December 2022",
+      image: engagement,
+      date: "March 2025",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "What a joy it is to stand hand in hand with the love of my life, celebrating such a meaningful moment. For years, you've inspired me to become better every single day. I can’t wait to begin this incredible journey with you — to our future, to countless adventures, and a lifetime filled with love.",
     },
     {
       title: "Wedding Day",
-      image: image4,
+      image: engagement,
       date: "May 2025",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -281,22 +290,22 @@ function App() {
                   <div className="flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 md:space-x-6">
                     <WeddingCalendar />
                     <VenueCard
-                      imageSrc={image4}
+                      imageSrc={church}
                       name="Archdiocesan Shrine and Parish of the Immaculate Heart of Mary"
                       time="1:00 PM"
                     />
                   </div>
                 </section>
                 <section className="flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 max-w-screen-md mx-auto scroll-mt-5">
-                  <SectionTitle>Dress Code</SectionTitle>
+                  <SectionTitle>Attire Guidelines</SectionTitle>
                   <ColorPalette />
                   <DressCodeBanner />
                   <div className="mt-6 space-y-2">
-                    <p className="text-lg">
+                    <p className="text-lg lg:text-2xl">
                       Please wear formal attire and follow the color palette
                       above.
                     </p>
-                    <ul className="text-base text-gray-200 list-disc list-inside">
+                    <ul className="text-base lg:text-lg text-gray-200 list-disc list-inside">
                       <li>
                         Men: Barong or long sleeves, formal pants, and dress
                         shoes.
@@ -314,7 +323,7 @@ function App() {
                 </section>
 
                 <section className="bg-black/40 text-center py-10">
-                  <SectionTitle>Gallery</SectionTitle>
+                  <SectionTitle>The Wedding Chronicles</SectionTitle>
                   <BlurFadeDemo />
                 </section>
 

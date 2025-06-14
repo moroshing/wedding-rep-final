@@ -6,14 +6,14 @@ const Timeline = ({ events }) => {
   // Prepare the items array for Ant Design Timeline
   const timelineItems = events.map((event) => ({
     label: (
-      <span className="text-white block text-left mt-1 mr-4">
+      <span className="text-white text-lg font-semibold block text-left mb-10 mr-4">
         {event.date}
         <br />
         {event.image && (
           <motion.img
             src={event.image}
             alt=""
-            className="mt-2 w-full h-32 object-cover rounded"
+            className="mt-2 w-full h-50 object-cover rounded"
             initial={{ scale: 0.9, opacity: 0.7 }}
             whileInView={{ scale: 1.05, opacity: 1 }}
             transition={{ duration: 0.5, type: "spring" }}
@@ -34,8 +34,8 @@ const Timeline = ({ events }) => {
       />
     ),
     children: (
-      <div className="w-full text-right">
-        <h3 className="text-lg font-semibold  text-white">{event.title}</h3>
+      <div className="w-full text-right mb-30">
+        <h3 className="text-lg font-semibold text-white">{event.title}</h3>
         <p className="mt-2 text-justify text-xs md:text-sm lg:text-base text-white">
           {event.description}
         </p>

@@ -1,15 +1,44 @@
 import React from "react";
 import BlurFade from "./magicui/blur-fade";
-import image1 from "../assets/image1.jpg";
-import image2 from "../assets/image2.jpg";
-import image3 from "../assets/image3.jpg";
-import image4 from "../assets/church1.jpg";
-import image5 from "../assets/church.jpg";
-import image6 from "../assets/bg.jpg";
-import image7 from "../assets/image7.jpg";
-import image8 from "../assets/image8.jpg";
+import image4 from "../assets/img4.jpg";
+import image5 from "../assets/img5.jpg";
+import image6 from "../assets/img6.jpg";
+import image7 from "../assets/img7.jpg";
+import image8 from "../assets/img8.jpg";
+import image9 from "../assets/img9.jpg";
+import image10 from "../assets/img10.jpg";
+import image11 from "../assets/img11.jpg";
+import image12 from "../assets/img12.jpg";
+import image13 from "../assets/img13.jpg";
+import image14 from "../assets/img14.jpg";
+import image15 from "../assets/img15.jpg";
+import image16 from "../assets/img16.jpg";
+import image17 from "../assets/img17.jpg";
+import image18 from "../assets/img18.jpg";
+import image19 from "../assets/img19.jpg";
+import image20 from "../assets/img20.jpg";
+import image21 from "../assets/img21.jpg";
 
-const images = [image3, image4, image6, image5, image1, image7, image8, image2];
+const images = [
+  image6,
+  image5,
+  image12,
+  image7,
+  image4,
+  image9,
+  image10,
+  image11,
+  image16,
+  image18,
+  image19,
+  image21,
+  image13,
+  image14,
+  image15,
+  image20,
+  image8,
+  image17,
+];
 
 export default function Gallery() {
   return (
@@ -24,7 +53,6 @@ export default function Gallery() {
               <img
                 className="mb-4 size-full rounded-lg object-contain"
                 src={imageUrl}
-                loading="lazy"
                 alt={`Gallery image ${idx + 1}`}
                 width={width}
                 height={height}

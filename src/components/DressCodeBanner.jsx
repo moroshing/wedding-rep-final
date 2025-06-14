@@ -10,7 +10,6 @@ export default function DressCodeBanner() {
         alt="Dress Code"
         className="w-full max-w-full h-full object-contain rounded-lg"
         draggable={false}
-        loading="lazy"
       />
       <motion.span
         className="absolute left-4 sm:left-8 md:left-12 top-4 sm:top-8 md:top-16 text-white font-bold text-base sm:text-xl md:text-3xl drop-shadow-lg"
