@@ -1,7 +1,7 @@
 import first from "../assets/meet.jpg";
 import engagement from "../assets/engagement.jpg";
 import date from "../assets/date.jpg";
-import prep from "../assets/img15.jpg";
+import prep from "../assets/prep.jpg";
 
 const timelineEvents = [
   {
