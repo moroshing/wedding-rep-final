@@ -274,7 +274,7 @@ function App() {
 
               {/* Timeline Section */}
               <section
-                className="bg-black/40 text-center py-10"
+                className="bg-black/40 text-center px-5 py-10 space-y-6 mx-auto scroll-mt-5"
                 ref={timelineRef}
               >
                 <SectionTitle>Our Journey</SectionTitle>
