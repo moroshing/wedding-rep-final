@@ -73,7 +73,22 @@ export default function VenueCard({ imageSrc, name, time }) {
               fontFamily: '"EB Garamond", serif',
             }}
           >
-            Get Directions
+            GET CHURCH LOC.
+          </Button>
+          <Button
+            size="small"
+            component="a"
+            href="https://maps.app.goo.gl/anRk1SvBE3uThWr77"
+            target="_blank"
+            sx={{
+              padding: "4px 8px",
+              backgroundColor: "#5c522a",
+              color: "#fff",
+              "&:hover": { backgroundColor: "#6d4320" },
+              fontFamily: '"EB Garamond", serif',
+            }}
+          >
+            GET RECEPTION LOC.
           </Button>
         </CardActions>
       </Card>

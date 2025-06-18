@@ -35,14 +35,10 @@ function Carousel({ images }) {
           </div>
         ))}
       </Slider>
-      <p className="text-base text-white text-justify">
-        A glimpse into the moments that brought us here. From our first meeting
-        to the journey of love, these memories are a testament to our story — a
-        tale written in laughter, sealed with promises, and guided by fate. Each
-        moment, a thread woven into the tapestry of us, leading us to this
-        beautiful day. Join us as we celebrate the love that has blossomed and
-        the memories that will forever be cherished. We can't wait to share this
-        special day with you!
+      <p className="text-base lg:text-lg text-white text-justify">
+        Before the aisle, before the vows just us, wrapped in love, laughter,
+        and quiet promises. This shoot captures not just a moment, but the story
+        of how we’re walking into forever hand in hand, heart to heart.
       </p>
     </>
   );

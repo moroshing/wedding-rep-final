@@ -3,10 +3,15 @@ import "./index.css";
 import { useRef, useState, useEffect } from "react";
 
 import bgImage from "./assets/bg.jpg";
+import money from "./assets/money.png";
 import church from "./assets/church1.jpg";
+import e1 from "./assets/1.png";
+import e2 from "./assets/2.png";
+import e3 from "./assets/3.png";
 import musicFile from "./assets/music.mp3";
 import { carouselImages } from "./utils/carouselImgs";
 import timelineEvents from "./utils/timelineEvents";
+import { Clock } from "lucide-react"; // import your icon at the top
 
 import VenueCard from "./components/Card";
 import Timeline from "./components/Timeline";
@@ -17,7 +22,6 @@ import TimerGrid from "./components/Timer";
 import WeddingCalendar from "./components/Calendar";
 import SectionTitle from "./components/Header";
 import TypewriterText from "./components/Typewriter";
-import Entourage from "./components/Entourage";
 import ColorPalette from "./components/ColorPalette";
 import DressCodeBanner from "./components/DressCodeBanner";
 import BlurFadeDemo from "./components/Gallery";
@@ -76,7 +80,7 @@ function App() {
   useEffect(() => {
     const loadAssets = async () => {
       try {
-        const imageList = [...carouselImages, bgImage];
+        const imageList = [...carouselImages, bgImage, church, money];
         await preloadImages(imageList);
         setLoading(false);
       } catch (error) {
@@ -215,6 +219,7 @@ function App() {
                 calendarRef={calendarRef}
                 rsvpRef={rsvpRef}
                 faqRef={faqRef}
+                audioRef={audioRef}
               />
               {/* Timer Section */}
               <section
@@ -263,22 +268,79 @@ function App() {
                   </svg>
                 </div>
               </section>
+              {/* Timeline Section */}
+              <section className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5 mt-5">
+                <SectionTitle>
+                  "He has made everything beautiful in its time."
+                  <br />
+                  <br /> Ecclesiastes 3:11
+                </SectionTitle>
+              </section>
+              <section
+                className="bg-black/40 text-center px-5 py-10 space-y-6 mx-auto scroll-mt-5 "
+                ref={timelineRef}
+              >
+                <SectionTitle>Our Journey</SectionTitle>
+                <Timeline events={timelineEvents} />
+              </section>
+
+              <section
+                ref={carouselRef}
+                className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5"
+              >
+                <div className="flex flex-col space-y-8 pt-4">
+                  <div className="w-full">
+                    <img
+                      src={e1}
+                      alt="Entourage 1"
+                      className="w-full h-auto rounded-lg shadow-md object-cover"
+                    />
+                  </div>
+
+                  <div className="w-full">
+                    <img
+                      src={e2}
+                      alt="Entourage 2"
+                      className="w-full h-auto rounded-lg shadow-md object-cover"
+                    />
+                  </div>
+
+                  <div className="w-full">
+                    <img
+                      src={e3}
+                      alt="Entourage 3"
+                      className="w-full h-auto rounded-lg shadow-md object-cover"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <section className="px-5 py-20 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5 mb-20">
+                <SectionTitle>Prenup Video</SectionTitle>
+                <div className="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg">
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/-nqlbgxFDns?si=I7le1aNTr0KfEoAI"
+                    title="Our Story Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </section>
+
+              <section className="bg-black/40 text-center py-10">
+                <SectionTitle>The Wedding Chronicles</SectionTitle>
+                <BlurFadeDemo />
+              </section>
+
               {/* Carousel Section */}
               <section
                 ref={carouselRef}
                 className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5 mb-15"
               >
-                <SectionTitle>Our Memories</SectionTitle>
+                <SectionTitle>A Glimpse into Forever</SectionTitle>
                 <Carousel images={carouselImages} />
-              </section>
-
-              {/* Timeline Section */}
-              <section
-                className="bg-black/40 text-center px-5 py-10 space-y-6 mx-auto scroll-mt-5"
-                ref={timelineRef}
-              >
-                <SectionTitle>Our Journey</SectionTitle>
-                <Timeline events={timelineEvents} />
               </section>
 
               {/* Wedding Day Section */}
@@ -297,40 +359,68 @@ function App() {
                   />
                 </div>
               </section>
-              <section className="flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 max-w-screen-md mx-auto scroll-mt-5">
-                <SectionTitle>Attire Guidelines</SectionTitle>
-                <ColorPalette />
-                <DressCodeBanner />
-                <div className="mt-6 space-y-2">
-                  <p className="text-lg lg:text-2xl">
-                    Please wear formal attire and follow the color palette
-                    above.
-                  </p>
-                  <ul className="text-base lg:text-lg text-gray-200 list-disc list-inside">
-                    <li>
-                      Men: Barong or long sleeves, formal pants, and dress
-                      shoes.
-                    </li>
-                    <li>
-                      Women: Long dress or formal attire in earth tones or
-                      pastel colors.
-                    </li>
-                    <li>
-                      Please avoid wearing white or the same color as the
-                      entourage.
-                    </li>
-                  </ul>
+              <section className="flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 max-w-screen-sm mx-auto scroll-mt-5">
+                <SectionTitle>Arrival Time</SectionTitle>
+                <div className="mt-6 space-y-4">
+                  <Clock className="w-20 h-20 text-white mx-auto" />
+                  <div className="pt-4 text-base lg:text-xl text-gray-200 text-center">
+                    <p>
+                      Please arrive 30 minutes before the ceremony starts at
+                      1:00 in the afternoon. Welcome remarks and reception
+                      starts at 4:30 in the afternoon.
+                    </p>
+                  </div>
                 </div>
               </section>
 
-              <section className="bg-black/40 text-center py-10">
-                <SectionTitle>The Wedding Chronicles</SectionTitle>
-                <BlurFadeDemo />
+              <section className="flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 max-w-screen-md mx-auto scroll-mt-5">
+                <SectionTitle>Gift Guide</SectionTitle>
+                <div className="mt-6 space-y-4">
+                  <img
+                    src={money}
+                    alt="Gift illustration"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto rounded-lg"
+                  />
+                  <div className="pt-4 text-base lg:text-xl text-gray-200 text-justify">
+                    <p>
+                      Your presence at our wedding is the greatest gift we could
+                      ask for. However, if you wish to honor us with a gift, we
+                      would greatly appreciate a monetary contribution to help
+                      us start our new chapter together.
+                    </p>
+                    <p className="pt-2">
+                      Envelopes will be provided at the reception for your
+                      convenience. We truly appreciate your love and support!
+                    </p>
+                  </div>
+                </div>
               </section>
 
-              <section className="px-5 py-10 space-y-6 text-center max-w-screen-md mx-auto scroll-mt-5">
-                <SectionTitle>Meet the Entourage</SectionTitle>
-                <Entourage />
+              <section className="bg-black/40 flex flex-col items-center justify-center text-center px-5 py-10 space-y-6 mx-auto scroll-mt-5">
+                <SectionTitle>Attire Guidelines</SectionTitle>
+                <ColorPalette />
+                <DressCodeBanner />
+                <div className="mt-6 space-y-2 text-left">
+                  <p className="text-base lg:text-xl">
+                    Please wear formal attire and follow the color palette
+                    above.
+                  </p>
+                  <ul className="text-base lg:text-xl text-gray-200 list-disc list-inside">
+                    <li>
+                      Men: Suit, long sleeves or any formal attire, formal
+                      pants, and shoes.
+                    </li>
+                    <li>
+                      Women: Long dress or formal attire based on the color
+                      palette above.
+                    </li>
+                  </ul>
+                  <br />
+                  <p className="text-base lg:text-xl">
+                    Please avoid wearing white or ivory let’s let the bride
+                    shine. Thank you for dressing with love!
+                  </p>
+                </div>
               </section>
 
               <section
@@ -352,7 +442,7 @@ function App() {
 
               <section
                 ref={faqRef}
-                className="w-screen flex items-center justify-center bg-black/80"
+                className="w-full flex items-center justify-center bg-black/80"
                 style={{ minHeight: "calc(100vh - 75px)" }}
               >
                 <div className="text-white max-w-2xl w-full px-6">
@@ -360,37 +450,33 @@ function App() {
                   <div className="space-y-6">
                     <div className="bg-white/90 rounded-xl shadow-lg p-6 text-black">
                       <h3 className="text-xl font-semibold mb-2">
-                        What is the dress code?
-                      </h3>
-                      <p className="text-lg text-gray-700">
-                        Formal attire. Please refer to the dress code section
-                        above for details.
-                      </p>
-                    </div>
-                    <div className="bg-white/90 rounded-xl shadow-lg p-6 text-black">
-                      <h3 className="text-xl font-semibold mb-2">
-                        Can I bring a plus one?
-                      </h3>
-                      <p className="text-lg text-gray-700">
-                        Please check your invitation or contact us if you have
-                        questions about your guest list.
-                      </p>
-                    </div>
-                    <div className="bg-white/90 rounded-xl shadow-lg p-6 text-black">
-                      <h3 className="text-xl font-semibold mb-2">
-                        Where is the venue?
-                      </h3>
-                      <p className="text-lg text-gray-700">
-                        Archdiocesan Shrine and Parish of the Immaculate Heart
-                        of Mary. See the "Our Wedding Day" section for details.
-                      </p>
-                    </div>
-                    <div className="bg-white/90 rounded-xl shadow-lg p-6 text-black">
-                      <h3 className="text-xl font-semibold mb-2">
                         How do I RSVP?
                       </h3>
                       <p className="text-base text-gray-700">
                         Please fill out the RSVP form in the RSVP section above.
+                      </p>
+                    </div>
+                    <div className="bg-white/90 rounded-lg shadow-lg p-6 text-black">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Can we bring our kids to the wedding?
+                      </h3>
+                      <p className="text-lg text-gray-700">
+                        We certainly love your kids, but due to necessity rather
+                        than choice, we regretfully can't accommodate them at
+                        the venue. The only kids attending are those who are
+                        part of the entourage and those requested. We hope you
+                        understand and enjoy the night off.
+                      </p>
+                    </div>
+                    <div className="bg-white/90 rounded-xl shadow-lg p-6 text-black">
+                      <h3 className="text-xl font-semibold mb-2">
+                        Can I bring someone else to your wedding with me?
+                      </h3>
+                      <p className="text-lg text-gray-700">
+                        Unfortunately, no. We hope you understand that we can no
+                        longer accommodate those who are not in our guest list
+                        due to limited seats. Each seat and table has a name
+                        assigned.
                       </p>
                     </div>
                   </div>

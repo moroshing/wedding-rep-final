@@ -9,7 +9,7 @@ import { motion } from "motion/react";
 const Timeline = ({ events }) => {
   return (
     <div className="flex justify-center max-w-screen-md mx-auto">
-      <VerticalTimeline>
+      <VerticalTimeline className="!p-0">
         {events.map((event, index) => (
           <VerticalTimelineElement
             className="no-margin"
