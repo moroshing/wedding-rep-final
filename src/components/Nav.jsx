@@ -1,6 +1,4 @@
-import { useState, useRef } from "react";
 import { motion } from "motion/react";
-import { Volume2, VolumeX } from "lucide-react"; // or replace with your own icons
 
 const TopNav = ({
   scrollToSection,
@@ -9,17 +7,7 @@ const TopNav = ({
   calendarRef,
   rsvpRef,
   faqRef,
-  audioRef, // <-- Add this prop if you want to control a global audio
 }) => {
-  const [isMuted, setIsMuted] = useState(false);
-
-  const toggleMute = () => {
-    if (audioRef?.current) {
-      audioRef.current.muted = !audioRef.current.muted;
-      setIsMuted(audioRef.current.muted);
-    }
-  };
-
   const navItems = [
     { label: "OUR JOURNEY", ref: timelineRef },
     { label: "OUR STORY", ref: carouselRef },
@@ -71,16 +59,6 @@ const TopNav = ({
             </motion.button>
           ))}
         </div>
-
-        {/* Mute / Unmute Button */}
-        <motion.button
-          onClick={toggleMute}
-          className="ml-4 p-2 text-white"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-        </motion.button>
       </motion.div>
     </motion.nav>
   );

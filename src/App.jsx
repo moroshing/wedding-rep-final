@@ -11,8 +11,9 @@ import e3 from "./assets/3.png";
 import musicFile from "./assets/music.mp3";
 import { carouselImages } from "./utils/carouselImgs";
 import timelineEvents from "./utils/timelineEvents";
-import { Clock } from "lucide-react"; // import your icon at the top
-
+import { Clock } from "lucide-react";
+import { motion } from "motion/react";
+import { Volume2, VolumeX } from "lucide-react"; // or replace with your own icons
 import VenueCard from "./components/Card";
 import Timeline from "./components/Timeline";
 import Carousel from "./components/Carousel";
@@ -54,6 +55,14 @@ function App() {
   const calendarRef = useRef(null);
   const rsvpRef = useRef(null);
   const faqRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(false);
+
+  const toggleMute = () => {
+    if (audioRef?.current) {
+      audioRef.current.muted = !audioRef.current.muted;
+      setIsMuted(audioRef.current.muted);
+    }
+  };
 
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
@@ -205,6 +214,7 @@ function App() {
           loop
           style={{ display: showModal ? "none" : "block" }}
         />
+
         <div
           className="absolute inset-0 bg-black opacity-40 z-0"
           aria-hidden="true"
@@ -221,6 +231,15 @@ function App() {
                 faqRef={faqRef}
                 audioRef={audioRef}
               />
+              <motion.button
+                onClick={toggleMute}
+                className="fixed bottom-4 left-4 z-50 p-3 bg-black bg-opacity-60 rounded-full text-white"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                title={isMuted ? "Unmute" : "Mute"}
+              >
+                {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+              </motion.button>
               {/* Timer Section */}
               <section
                 className="h-screen flex flex-col items-center justify-center text-center px-5"
@@ -248,7 +267,7 @@ function App() {
                 <div className="mt-20 animate-bounce">
                   <p
                     className="text-sm text-gray-300 cursor-pointer hover:underline"
-                    onClick={() => scrollToSection(carouselRef)}
+                    onClick={() => scrollToSection(timelineEvents)}
                   >
                     Scroll to discover our story
                   </p>
