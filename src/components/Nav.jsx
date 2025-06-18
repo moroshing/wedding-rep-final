@@ -24,7 +24,7 @@ const TopNav = ({
       className="fixed top-0 left-0 w-full bg-black bg-opacity-70 z-50 text-white py-2"
     >
       <motion.div
-        className="flex justify-between items-center max-w-screen-md mx-auto px-4"
+        className="flex justify-center space-x-2 sm:space-x-6"
         initial="hidden"
         animate="visible"
         variants={{
@@ -38,27 +38,25 @@ const TopNav = ({
           },
         }}
       >
-        <div className="flex justify-center flex-1 space-x-2 sm:space-x-6">
-          {navItems.map((item) => (
-            <motion.button
-              key={item.label}
-              onClick={() => scrollToSection(item.ref)}
-              className="py-2 px-1 text-[10px] sm:text-xs cursor-pointer"
-              variants={{
-                hidden: { y: -10, opacity: 0 },
-                visible: { y: 0, opacity: 1 },
-              }}
-              whileHover={{
-                scale: 1.1,
-                textShadow: "0 0 8px rgba(255,255,255,0.5)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              {item.label}
-            </motion.button>
-          ))}
-        </div>
+        {navItems.map((item) => (
+          <motion.button
+            key={item.label}
+            onClick={() => scrollToSection(item.ref)}
+            className="py-2 px-1 text-[10px] sm:text-xs cursor-pointer"
+            variants={{
+              hidden: { y: -10, opacity: 0 },
+              visible: { y: 0, opacity: 1 },
+            }}
+            whileHover={{
+              scale: 1.1,
+              textShadow: "0 0 8px rgba(255,255,255,0.5)",
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            {item.label}
+          </motion.button>
+        ))}
       </motion.div>
     </motion.nav>
   );
