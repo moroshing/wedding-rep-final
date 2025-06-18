@@ -267,7 +267,7 @@ function App() {
                 <div className="mt-20 animate-bounce">
                   <p
                     className="text-sm text-gray-300 cursor-pointer hover:underline"
-                    onClick={() => scrollToSection(timelineEvents)}
+                    onClick={() => scrollToSection(timelineRef)}
                   >
                     Scroll to discover our story
                   </p>
